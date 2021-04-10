@@ -5,11 +5,13 @@ def romano_a_decimal(n_romano):
 
     if n_romano == "":
         return 0
+    elif numero_rom[n_romano[0]] < numero_rom[n_romano[1]]:
+        return numero_rom[n_romano[1]] - numero_rom[n_romano[0]]
     else:
         return numero_rom[n_romano[0]] + romano_a_decimal(n_romano[1:])
 
 
-print("Su numero romano pasado a decimal es: ", romano_a_decimal("XXVL"))
+print("Su numero romano pasado a decimal es: ", romano_a_decimal("XXVC"))
 
 
 # Ejercicio 8

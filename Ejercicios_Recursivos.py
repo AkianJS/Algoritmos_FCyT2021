@@ -3,15 +3,15 @@
 def romano_a_decimal(n_romano):
     numero_rom = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
-    if n_romano == "":
-        return 0
+    if len(n_romano) == 1:
+        return numero_rom[n_romano[0]]
     elif numero_rom[n_romano[0]] < numero_rom[n_romano[1]]:
-        return numero_rom[n_romano[1]] - numero_rom[n_romano[0]]
+        return -(numero_rom[n_romano[0]]) + romano_a_decimal(n_romano[1:])
     else:
         return numero_rom[n_romano[0]] + romano_a_decimal(n_romano[1:])
 
 
-print("Su numero romano pasado a decimal es: ", romano_a_decimal("XXVC"))
+print("Su numero romano pasado a decimal es: ", romano_a_decimal("XXVM"))
 
 
 # Ejercicio 8

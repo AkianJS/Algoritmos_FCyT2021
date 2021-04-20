@@ -67,55 +67,26 @@ if posicion != -1:
 # def escape_laberinto(x, y, matriz):
 
 
-matriz = [[0, 1, 0, 0, 0, 0],
+matriz = [[0, 1, 0, 0, 1, 1],
           [0, 1, 1, 1, 0, 0],
-          [0, 0, 1, 1, 0, 1],
+          [0, 0, 1, 1, 0, 2],
           [1, 0, 0, 0, 0, 1],
           [0, 0, 1, 1, 0, 0],
           [1, 1, 0, 0, 1, 2]]
 
 
-def escapeLaberinto(matriz, x, y, movimiento):
-
-    if matriz[x][y] == 2:
-        return 1
-    elif movimiento == "der" and matriz [x][y] == 1:
-        print("Chocaste contra una pared, retrocede")
-        return escapeLaberinto(matriz, x, y - 1, movimiento)
-    elif movimiento == "izq" and matriz [x][y] == 1:
-        print("Chocaste contra una pared, retrocede")
-        return escapeLaberinto(matriz, x, y + 1, movimiento)
-    elif movimiento == "arriba" and matriz [x][y] == 1:
-        print("Chocaste contra una pared, retrocede")
-        return escapeLaberinto(matriz, x + 1, y, movimiento)
-    elif movimiento == "abajo" and matriz [x][y] == 1:
-        print("Chocaste contra una pared, retrocede")
-        return escapeLaberinto(matriz, x - 1, y, movimiento)
+def escapeLaberinto(matriz, x, y):
+    if(x >= 0 and x <= len(matriz)-1) and (y >= 0 and y <= len(matriz[0])-1):
+        if(matriz[x][y] == 2):
+            print("Lograste escapar")
+        elif(matriz[x][y] == 0):
+            matriz[x][y] = 3
+            escapeLaberinto(matriz, x, y+1)
+            escapeLaberinto(matriz, x, y-1)
+            escapeLaberinto(matriz, x-1, y)
+            escapeLaberinto(matriz, x+1, y)
+            matriz[x][y] = 0
     else:
-        movimiento = input("Digite direccion de movimiento: der/izq/arriba/abajo ")
+        print("No lograste escapar")
 
-        if (y == 0 and movimiento == "izq"):
-            print("Hay una pared de ese lado!")
-            return escapeLaberinto(matriz, x, y, movimiento)
-        elif (x == 0 and movimiento == "arriba"):
-            print("Hay una pared de ese lado!")
-            return escapeLaberinto(matriz, x, y, movimiento)
-        elif (y == 5 and movimiento == "der"):
-            print("Hay una pared de ese lado!")
-            return escapeLaberinto(matriz, x, y, movimiento)
-        elif (x == 5 and movimiento == "abajo"):
-            print("Hay una pared de ese lado!")
-            return escapeLaberinto(matriz, x, y, movimiento)
-        else:
-            if movimiento == "der":
-                return escapeLaberinto(matriz, x, y + 1, movimiento)
-            elif movimiento == "izq":
-                return escapeLaberinto(matriz, x, y - 1, movimiento)
-            elif movimiento == "arriba":
-                return escapeLaberinto(matriz, x - 1, y, movimiento)
-            elif movimiento == "abajo":
-                return escapeLaberinto(matriz, x + 1, y, movimiento)
-
-
-escapo = escapeLaberinto(matriz, 0, 0, "")
-if escapo == 1: print("Escapo con exito")
+escapeLaberinto(matriz, 0, 0)

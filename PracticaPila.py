@@ -1,17 +1,5 @@
-import random
 from EstructuraPila import Pila
-from Git.Algoritmos_FCyT2021 import EstructuraPila
 
-pila = EstructuraPila.Pila
-pilaAux = EstructuraPila.Pila
-
-# def cargar():
-#     for i in range (0, 5):
-#         numRand = random.randint(1, 100)
-#         print(numRand)
-#         pila.apilar(numRand)
-
-print()
 
 # Ejercicio 14
 
@@ -61,11 +49,8 @@ def starWarsPersonajes():
         pilaEmpire.apilar(elementos)
 
     while not pilaEmpire.pilaVacia():
-        if pilaForce.elementoUltimo() == pilaEmpire.elementoUltimo():
+        if pilaForce.desapilar() == pilaEmpire.elementoUltimo():
             pilaCoincide.apilar(pilaEmpire.desapilar())
-            pilaForce.desapilar()
-        else:
-            pilaForce.desapilar()
 
         if pilaForce.pilaVacia():
             pilaEmpire.desapilar()

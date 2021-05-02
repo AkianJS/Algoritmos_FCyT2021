@@ -175,3 +175,80 @@ def theMandalorian():
     print("Boba Fett realizo: ", contBobaCapturas, " capturas")
 
 theMandalorian()
+
+# Ejercicio 24
+print()
+print("Ejercicio 24:")
+print()
+
+class MarvelPersonajes(object):
+    def __init__(self, personaje, cantPeliculas):
+        self.personaje = personaje
+        self.cantPeliculas = cantPeliculas
+
+def marvel():
+    pila = Pila()
+    pilaMasDeCinco = Pila()
+    pilaCDG = Pila()
+
+
+    pila.apilar(MarvelPersonajes("Iron Man", 9))
+    pila.apilar(MarvelPersonajes("Viuda Negra", 3))
+    pila.apilar(MarvelPersonajes("Hulk", 6))
+    pila.apilar(MarvelPersonajes("Capitan America", 7))
+    pila.apilar(MarvelPersonajes("Rocket Raccoon", 0))
+
+    cantPelisViuda = -1
+    contPersonajes = 0
+    posRocketRaccoon = -1
+    posGroot = -1
+    letraCDG = ['C', 'D', 'G']
+
+    while not pila.pilaVacia():
+        personajeActual = pila.desapilar()
+        contPersonajes += 1
+
+        # A
+        if personajeActual.personaje == "Rocket Raccoon":
+            posRocketRaccoon = contPersonajes
+        elif personajeActual.personaje == "Groot":
+            posGroot = contPersonajes
+
+        # B
+        if personajeActual.cantPeliculas > 5:
+            pilaMasDeCinco.apilar(personajeActual)
+
+        # C
+        if personajeActual.personaje == "Viuda Negra":
+            cantPelisViuda = personajeActual.cantPeliculas
+
+        # D
+        if personajeActual.personaje[0] == letraCDG[0] or personajeActual.personaje[0] == letraCDG[1] or personajeActual.personaje[0] == letraCDG[2]:
+            pilaCDG.apilar(personajeActual)
+
+    if posRocketRaccoon != -1:
+        print("Se encontro a Rocket Raccoon en la posicion: ", posRocketRaccoon)
+    else:
+        print("No se encontro a Rocket Raccoon")
+    if posGroot != -1:
+        print("Se encontro a Groot en la posicion: ", posGroot)
+    else:
+        print("No se encontro a Groot")
+
+    print()
+    print("Los personajes con mas de 5 peliculas son:")
+    while not pilaMasDeCinco.pilaVacia():
+        personajeActual = pilaMasDeCinco.desapilar()
+        print("Personaje:", personajeActual.personaje, "presente en", personajeActual.cantPeliculas, "peliculas")
+
+    print()
+    if cantPelisViuda != -1:
+        print("La Viuda Negra participo en:", cantPelisViuda, "peliculas")
+
+    print()
+    print("Personajes que comienzan con la letra C, D o G:")
+    while not pilaCDG.pilaVacia():
+        personajeActual = pilaCDG.desapilar()
+        print(personajeActual.personaje)
+
+marvel()

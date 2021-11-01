@@ -1,6 +1,6 @@
 
 from cola import Cola
-
+from EstructuraLista import Lista
 
 class Arbol(object):
 
@@ -236,8 +236,6 @@ class Arbol(object):
                 self.izq.arboles_separados_heroe_villano(arbol_super, arbol_villano)
             if(self.der is not None):
                 self.der.arboles_separados_heroe_villano(arbol_super, arbol_villano)
-
-
     
     def contar_pares_impares(self):
         pares, impares = 0, 0
@@ -255,6 +253,83 @@ class Arbol(object):
                 pares += par
                 impares += impar
         return pares, impares
+
+    def contarMuertes(self, nombre):
+        contador = 0
+        if(self.info is not None):
+            if self.datos['derrotadoPor'] == nombre:
+                contador += 1
+            if(self.der is not None):
+                contador += self.der.contarMuertes(nombre)
+            if (self.izq is not None):
+                contador += self.izq.contarMuertes(nombre)
+        return contador
+
+    def criaturaDerrotadaPor(self, nombre, criaturas):
+        if(self.info is not None):
+            if self.datos['derrotadoPor'] == nombre:
+                criaturas.append(self.info)
+            if(self.der is not None):
+                self.der.criaturaDerrotadaPor(nombre, criaturas)
+            if (self.izq is not None):
+                self.izq.criaturaDerrotadaPor(nombre, criaturas)
+        return criaturas
+
+    def nombreDioses(self, lista):
+        if (self.info is not None):
+            if len(lista) == 0 and self.datos['derrotadoPor']:
+                lista.append(self.datos['derrotadoPor'])
+            if len(lista) > 0 and self.datos['derrotadoPor']:
+                if self.datos['derrotadoPor'] not in lista:
+                    lista.append(self.datos['derrotadoPor'])
+            if (self.der is not None):
+                self.der.nombreDioses(lista)
+            if (self.izq is not None):
+                self.izq.nombreDioses(lista)
+        return lista
+
+    def criaturasSinDerrotar(self):
+        if (self.info is not None):
+            if self.datos['derrotadoPor'] == '':
+                print(self.info)
+            if (self.der is not None):
+                self.der.criaturasSinDerrotar()
+            if (self.izq is not None):
+                self.izq.criaturasSinDerrotar()
+
+    def modificarCapturadoPor(self):
+        if (self.info is not None):
+            if self.info == 'Cerbero':
+                self.datos['capturadoPor'] = 'Heracles'
+            elif self.info == 'Toro de Creta':
+                self.datos['capturadoPor'] = 'Heracles'
+            elif self.info == 'Cierva Cerinea':
+                self.datos['capturadoPor'] = 'Heracles'
+            elif self.info == 'Jabali de Erimanto':
+                self.datos['capturadoPor'] = 'Heracles'
+            if (self.der is not None):
+                self.der.modificarCapturadoPor()
+            if (self.izq is not None):
+                self.izq.modificarCapturadoPor()
+
+    def modificarAvesEstinfalo(self):
+        if (self.info is not None):
+            if self.info == 'Aves de Estinfalo':
+                self.datos['derrotadoPor'] = 'Heracles'
+                self.datos['descripcion'] = 'Heracles derroto a varias'
+            if (self.der is not None):
+                self.der.modificarAvesEstinfalo()
+            if (self.izq is not None):
+                self.izq.modificarAvesEstinfalo()
+
+    def capturadoPor(self, nombre):
+        if (self.info is not None):
+            if self.datos['capturadoPor'] == nombre:
+                print(self.info)
+            if (self.der is not None):
+                self.der.capturadoPor(nombre)
+            if (self.izq is not None):
+                self.izq.capturadoPor(nombre)
 
     def barrido_por_nivel(self):
         pendientes = Cola()

@@ -1,4 +1,5 @@
 from arbol_binario import Arbol
+from EstructuraLista import Lista
 
 # Ejercicio 5
 def ejercicio5():
@@ -55,21 +56,90 @@ def ejercicio5():
 def ejercicio23():
     arbol = Arbol()
 
-    criaturas = [{'nombre' : "Ceto", 'derrotadoPor' : '', 'descripcion': ''},
-                 {'nombre' : 'Tifon', 'derrotadoPor' : 'Zeus'},
-                 {'nombre' : 'Equidna', 'derrotadoPor' : 'Argos Panoptes', 'descripcion': ''},
-                 {'nombre' : 'Dino', 'derrotadoPor' : '', 'descripcion': ''},
-                 {'nombre' : 'Pefredo', 'derrotadoPor' : '', 'descripcion': ''},
-                 {'nombre' : 'Enio', 'derrotadoPor' : '', 'descripcion': ''},
-                 {'nombre' : 'Escila', 'derrotadoPor' : '', 'descripcion': ''},
-                 {'nombre' : 'Medusa', 'derrotadoPor' : 'Perseo', 'descripcion': ''},
-                 {'nombre' : 'Ladón', 'derrotadoPor' : 'Heracles', 'descripcion': ''}]
+    criaturas = [{'nombre' : "Ceto", 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Tifon', 'derrotadoPor' : 'Zeus', 'descripcion' : '', 'capturadoPor' : ''},
+                 {'nombre' : 'Equidna', 'derrotadoPor' : 'Argos Panoptes', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Dino', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Pefredo', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Enio', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Escila', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Medusa', 'derrotadoPor' : 'Perseo', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Ladon', 'derrotadoPor' : 'Heracles', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre': 'Ortro', 'derrotadoPor': 'Heracles', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Talos', 'derrotadoPor' : 'Medea', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Cerbero', 'derrotadoPor' : 'Teseo', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Toro de Creta', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Jabali de Erimanto', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Cierva Cerinea', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Aves de Estinfalo', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Basilisco', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''},
+                 {'nombre' : 'Sirenas', 'derrotadoPor' : '', 'descripcion': '', 'capturadoPor' : ''}]
 
     for elementos in criaturas:
         arbol = arbol.insertar_nodo(elementos['nombre'], elementos)
 
     arbol.inorden()
 
+    print()
+    # C
+    talos = arbol.busqueda('Talos')
+    if talos:
+        print(talos.datos)
+    # D
+    print()
+    lista = Lista()
+    aux = []
+    arbol.nombreDioses(aux)
+    for elementos in aux:
+        cantidad = arbol.contarMuertes(elementos)
+        dict = {'dios' : elementos, 'cantidadMuertes' : cantidad}
+        lista.insertar(dict, 'cantidadMuertes')
+    print('3 dioses con mas muertes:')
+    print(lista.obtener_elemento(lista.tamanio()-3))
+    print(lista.obtener_elemento(lista.tamanio()-2))
+    print(lista.obtener_elemento(lista.tamanio()-1))
+    print()
 
+    # E
+    criaturas = []
+    print('Criaturas derrotadas por Heracles')
+    criaturas = arbol.criaturaDerrotadaPor('Heracles', criaturas)
+    for elementos in criaturas:
+        print(elementos)
+
+    # F
+    print()
+    print('Criaturas sin derrotar')
+    arbol.criaturasSinDerrotar()
+
+    # H
+    print()
+    arbol.modificarCapturadoPor()
+
+    # I
+    print()
+    busquedaCoincidencia = input('Letras iniciales del nombre que desea buscar:')
+    arbol.busqueda_proximidad(busquedaCoincidencia)
+
+    # J
+    arbol.eliminar_nodo('Basilisco')
+    arbol.eliminar_nodo('Sirenas')
+
+    # K
+    arbol.modificarAvesEstinfalo
+
+    # L
+    ladInfo, ladDatos = arbol.eliminar_nodo('Ladon')
+    arbol = arbol.insertar_nodo('Dragon Ladon', ladDatos)
+
+    # M
+    print()
+    print('Barrido por nivel')
+    arbol.barrido_por_nivel()
+    print()
+
+    # N
+    print('Criaturas capturadas por Heracles')
+    arbol.capturadoPor('Heracles')
 
 ejercicio23()

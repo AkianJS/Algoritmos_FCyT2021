@@ -1,5 +1,6 @@
 from EstructuraCola import Cola
 from EstructuraPila import Pila
+from heap import HeapMax
 
 # Ejercicio 11
 
@@ -92,31 +93,23 @@ print()
 print("Ejercicio 16")
 print()
 
-class PersonalEmpresa(object):
-    def __init__(self, tipoCargo):
-        self.tipoCargo = tipoCargo
 
 def colaPrioridad():
-    cola = Cola()
-    cola.arribo(PersonalEmpresa("Empleado"))
-    cola.arribo(PersonalEmpresa("Empleado"))
-    cola.arribo(PersonalEmpresa("Empleado"))
+    cola = HeapMax()
+    cola.arribo('Empleado 1', 1)
+    cola.arribo('Empleado 2', 1)
+    cola.arribo('Empleado 3', 1)
 
-    print(cola.atencion().tipoCargo)
+    cola.arribo('Staff TI 1', 2)
+    cola.arribo('Staff TI 2', 2)
+    cola.arribo('Gerente 1', 3)
 
-    cola.cargaPrioritaria(PersonalEmpresa("Staff TI"))
-    cola.cargaPrioritaria(PersonalEmpresa("Staff TI"))
-    cola.cargaPrioritaria(PersonalEmpresa("Gerente"))
+    cola.arribo('Empleado 4', 1)
+    cola.arribo('Empleado 5', 1)
+    cola.arribo('Gerente 2', 3)
 
-    print(cola.atencion().tipoCargo)
-    print(cola.atencion().tipoCargo)
-
-    cola.arribo(PersonalEmpresa("Empleado"))
-    cola.arribo(PersonalEmpresa("Empleado"))
-    cola.cargaPrioritaria(PersonalEmpresa("Gerente"))
-
-    while not cola.colaVacia():
-        print(cola.atencion().tipoCargo)
+    while not cola.vacio():
+        print(cola.atencion())
 
 colaPrioridad()
 

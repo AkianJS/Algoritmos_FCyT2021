@@ -4,9 +4,10 @@ from EstructuraLista import Lista
 
 class Arbol(object):
 
-    def __init__(self, info=None, datos=None):
+    def __init__(self, info=None, datos=None, frecuencia=None):
         self.info = info
         self.datos = datos
+        self.frecuencia = frecuencia
         self.der = None
         self.izq = None
         self._altura = 0
@@ -347,7 +348,7 @@ class Arbol(object):
         pendientes.arribo(self)
         while(not pendientes.cola_vacia()):
             nodo = pendientes.atencion()
-            print(nodo.info, nodo.frecuencia)
+            print(nodo.info, nodo.datos)
             if(nodo.izq is not None):
                 pendientes.arribo(nodo.izq)
             if(nodo.der is not None):

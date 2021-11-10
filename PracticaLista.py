@@ -92,6 +92,21 @@ def marvelEjercicio6():
 
 
 marvelEjercicio6()
+print()
+print('Ejercicio 15:')
+
+def pokemonEjercicio():
+    entrenador = [{'nombre' : 'Ash', 'torneos': 13, 'batallasPerdidas' : 4, 'batallasGanadas' : 22, 'pokemon' : Lista()},
+                  {'nombre' : 'Misty', 'torneos': 2, 'batallasPerdidas' : 2, 'batallasGanadas' : 13, 'pokemon' : Lista()},
+                  {'nombre': 'Brok', 'torneos': 3, 'batallasPerdidas': 7, 'batallasGanadas': 11, 'pokemon': Lista()}]
+
+    pokemonAsh = {'nombre' : 'Pikachu', 'nivel' : 10, 'tipo' : 'electro', 'subtipo' : 'ninguno'}
+
+    entrenador[0]['pokemon'].insertar(pokemonAsh, 'nombre')
+
+    print(entrenador[0]['pokemon'].obtener_elemento(0))
+
+pokemonEjercicio()
 
 print()
 print("Ejercicio 22:")
@@ -186,4 +201,4 @@ def jedisEjercicio22():
         if "mace windu" in lista.obtener_elemento(i)["maestro"]:
             print(lista.obtener_elemento(i))
 
-jedisEjercicio22()
+# jedisEjercicio22()

@@ -1,20 +1,20 @@
 from arbol_binario import Arbol
 
 tabla = [['Despejado', 0.22], ['Baja', 0.78], ['Lluvia', 0.03], ['Baja', 0.26]
-         , ['Alta', 0.14], [1, 0.05], [2, 0.01], [3, 0.035], [5, 0.06]
-         , [7, 0.02], [8, 0.025]]
+         , ['Alta', 0.14], ['1', 0.05], ['2', 0.01], ['3', 0.035], ['5', 0.06]
+         , ['7', 0.02], ['8', 0.025]]
 
 dic = {}
 
 
 def como_comparo(arbol):
-    return arbol.datos
+    return arbol.frecuencia
 
 
 bosque = []
 
-for info, datos in tabla:
-    arbol = Arbol(info, datos)
+for info, frecuencia in tabla:
+    arbol = Arbol(info, frecuencia)
     bosque.append(arbol)
 
 
@@ -25,7 +25,7 @@ bosque.sort(key=como_comparo)
 while(len(bosque) > 1):
     arbol1 = bosque.pop(0)
     arbol2 = bosque.pop(0)
-    nuevo_arbol = Arbol(datos=arbol1.datos+arbol2.datos)
+    nuevo_arbol = Arbol(frecuencia=arbol1.frecuencia+arbol2.frecuencia)
     nuevo_arbol.izq = arbol1
     nuevo_arbol.der = arbol2
     bosque.append(nuevo_arbol)
@@ -76,11 +76,10 @@ def decodificar(cadena_cod, arbol_huff):
     return cadena_deco
 
 
-cadena = ["Nublado", "Baja", 1, 5, 7]
+cadena = ["Despejado", "Baja"]
 cadena_cod = codificar(cadena, dic)
 # from sys import getsizeof
 # print(getsizeof(cadena_cod), getsizeof(b'0000011001101111010000000000000101100101101010101101000'))
 
 print(decodificar(cadena_cod, arbol_huffman))
-
 

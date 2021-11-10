@@ -100,9 +100,14 @@ def colaPrioridad():
     cola.arribo('Empleado 2', 1)
     cola.arribo('Empleado 3', 1)
 
+    print(cola.atencion())
+
     cola.arribo('Staff TI 1', 2)
     cola.arribo('Staff TI 2', 2)
     cola.arribo('Gerente 1', 3)
+
+    print(cola.atencion())
+    print(cola.atencion())
 
     cola.arribo('Empleado 4', 1)
     cola.arribo('Empleado 5', 1)

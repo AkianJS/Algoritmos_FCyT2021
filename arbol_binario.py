@@ -354,6 +354,52 @@ class Arbol(object):
             if(nodo.der is not None):
                 pendientes.arribo(nodo.der)
 
+# Funciones del Parcial
+
+    def tRexEnIsla(self, clave):
+        if(self.info is not None):
+            if self.info == clave:
+                print(self.datos)
+            if(self.izq is not None):
+                self.izq.tRexEnIsla(clave)
+            if(self.der is not None):
+                self.der.tRexEnIsla(clave)
+
+    def modificarSgimoloch(self, clave):
+        if(self.info is not None):
+            if self.info == clave:
+                self.nombre == 'Stygimoloch'
+            if(self.izq is not None):
+                self.izq.modificarSgimoloch(clave)
+            if(self.der is not None):
+                self.der.modificarSgimoloch(clave)
+
+    def ubicacionRaptores(self, clave):
+        if(self.info is not None):
+            if self.info == clave:
+                print(self.datos['ubicacion'])
+            if(self.izq is not None):
+                self.izq.ubicacionRaptores(clave)
+            if(self.der is not None):
+                self.der.ubicacionRaptores(clave)
+
+    def contarDiplodocus(self, clave):
+        cantidad = 0
+        if(self.info is not None):
+            if self.info == clave:
+                cantidad += 1
+            if(self.izq is not None):
+                cantidad += self.izq.contarDiplodocus(clave)
+            if(self.der is not None):
+                cantidad += self.der.contarDiplodocus(clave)
+        return cantidad
+
+
+
+
+
+
+
 
 # arbol = Arbol()
 # from random import randint

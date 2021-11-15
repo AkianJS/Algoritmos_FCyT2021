@@ -132,6 +132,7 @@ def ejercicioParcialGrafo():
     caminoMasCorto(equipo, 'Red Hat', 'MongoDB')
     print()
 
+    # Ejercicio 4
     print('Arbol de exp min')
     bosqueExpMin = equipo.prim()
     peso = 0
@@ -139,6 +140,7 @@ def ejercicioParcialGrafo():
         print(elemento[1][0], '-', elemento[1][1])
         peso += elemento[0]
 
+    # Ejercicio 5
     print()
     print('Barrido sin Impresora')
     equipo.eliminar_vertice('Impresora')

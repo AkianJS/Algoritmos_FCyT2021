@@ -93,18 +93,159 @@ def marvelEjercicio6():
 
 marvelEjercicio6()
 print()
+
+def ejercicio7():
+
+    lista1 = Lista()
+    lista2 = Lista()
+
+    datos = [
+        {'nombre': 'Juan', 'edad' : 28},
+        {'nombre': 'Tito', 'edad': 32},
+        {'nombre': 'Lara', 'edad': 67},
+        {'nombre': 'Julia', 'edad': 22}
+    ]
+
+    datos2 = [
+        {'nombre': 'Juan', 'edad' : 16},
+        {'nombre': 'Pedro', 'edad': 25},
+        {'nombre': 'Zulma', 'edad': 17},
+        {'nombre': 'Tito', 'edad': 42}
+         ]
+
+    for elementos in datos:
+        lista1.insertar(elementos, 'nombre')
+
+    for elementos in datos2:
+        lista2.insertar(elementos, 'nombre')
+
+    for i in range(0, lista2.tamanio()):
+        lista1.insertar(lista2.obtener_elemento(i), 'nombre')
+
+    print('Lista concatenada')
+    lista1.barrido()
+    print()
+
+    lista3 = Lista()
+    lista4 = Lista()
+
+    control = False
+    repetido = 0
+
+    for elementos in datos:
+        lista3.insertar(elementos, 'nombre')
+
+    for elementos in datos2:
+        lista4.insertar(elementos, 'nombre')
+
+    print('Lista sin repeticion y cant de repetidos')
+    # Punto B y C
+
+
+    for i in range (0, lista3.tamanio()):
+        for j in range (0, lista4.tamanio()):
+
+            if lista3.obtener_elemento(i)['nombre'] != lista4.obtener_elemento(j)['nombre']:
+                control = True
+            else:
+                control = False
+                break
+
+        if control:
+            lista3.insertar(lista4.obtener_elemento(i), 'nombre')
+        else:
+            repetido += 1
+
+    lista3.barrido()
+    print('Cantidad de repetidos', repetido)
+    print()
+
+    # Eliminar y mostrar
+    print('Eliminar y mostrar')
+    while(not lista1.lista_vacia()):
+        print(lista1.obtener_elemento(0))
+        lista1.eliminar(0)
+    print()
+
+ejercicio7()
+
+
 print('Ejercicio 15:')
 
 def pokemonEjercicio():
     entrenador = [{'nombre' : 'Ash', 'torneos': 13, 'batallasPerdidas' : 4, 'batallasGanadas' : 22, 'pokemon' : Lista()},
                   {'nombre' : 'Misty', 'torneos': 2, 'batallasPerdidas' : 2, 'batallasGanadas' : 13, 'pokemon' : Lista()},
-                  {'nombre': 'Brok', 'torneos': 3, 'batallasPerdidas': 7, 'batallasGanadas': 11, 'pokemon': Lista()}]
+                  {'nombre': 'Brock', 'torneos': 3, 'batallasPerdidas': 7, 'batallasGanadas': 11, 'pokemon': Lista()}]
 
     pokemonAsh = {'nombre' : 'Pikachu', 'nivel' : 10, 'tipo' : 'electro', 'subtipo' : 'ninguno'}
+    pokemonMisty = {'nombre' : 'Staryu', 'nivel' : 4, 'tipo' : 'agua', 'subtipo' : 'ninguno'}
+    pokemonBrock = {'nombre' : 'Geodude', 'nivel' : 6, 'tipo' : 'roca', 'subtipo' : 'ninguno'}
 
     entrenador[0]['pokemon'].insertar(pokemonAsh, 'nombre')
+    entrenador[1]['pokemon'].insertar(pokemonMisty, 'nombre')
+    entrenador[2]['pokemon'].insertar(pokemonBrock, 'nombre')
+
+    lista = Lista()
+    listaTorneos = Lista()
+
+    for elementos in entrenador:
+        lista.insertar(elementos, 'nombre')
+        listaTorneos.insertar(elementos, 'torneos')
+
 
     print(entrenador[0]['pokemon'].obtener_elemento(0))
+
+    def cantPokemonesEntrenador (nombre):
+        print('Cantidad de pokemones de ', nombre)
+        pos = lista.busqueda(nombre, 'nombre')
+        print(lista.obtener_elemento(pos)['pokemon'].tamanio())
+
+    cantPokemonesEntrenador('Ash')
+    print()
+
+    for i in range (0, lista.tamanio()):
+        entrenadorPok = lista.obtener_elemento(i)
+        if entrenadorPok['torneos'] > 3:
+            print(entrenadorPok['nombre'], 'gano mas de 3 torneos')
+
+    pokemones = listaTorneos.obtener_elemento(listaTorneos.tamanio()-1)['pokemon']
+    entrenadorCantMayorTorneo = listaTorneos.obtener_elemento(listaTorneos.tamanio()-1)
+    pokemonMayorNivel = 0
+
+    for i in range (0, entrenadorCantMayorTorneo['pokemon'].tamanio()):
+        if pokemones.obtener_elemento(i)['nivel'] > pokemonMayorNivel:
+            pokemonMayorNivel = pokemones.obtener_elemento(i)
+
+    print()
+    print('Entrenador con mas torneos', entrenadorCantMayorTorneo['nombre'])
+    print('Su pokemon de mayor nivel es', pokemonMayorNivel)
+    print()
+
+    def datosEntrenadorYPokemon(lista, nombre):
+        pos = lista.busqueda(nombre, 'nombre')
+        entrenador = lista.obtener_elemento(pos)
+        print('Entrenador:', entrenador)
+        print('Sus pokemones')
+        for i in range (0, lista.obtener_elemento(pos)['pokemon'].tamanio()):
+            print(entrenador['pokemon'].obtener_elemento(i))
+
+    datosEntrenadorYPokemon(lista, 'Ash')
+    print()
+
+    def entrenadores79WinRate(lista):
+        for i in range (0, lista.tamanio()):
+            entrenador = lista.obtener_elemento(i)
+            print(entrenador)
+            ganadas = entrenador['batallasGanadas']
+            perdidas = entrenador['batallasPerdidas']
+            total = ganadas + perdidas
+            ratio = (ganadas / total) * 100
+        if ratio > 79:
+            print(entrenador['nombre'], 'tiene un porcentaje de victorias mayor a 79')
+
+    entrenadores79WinRate(lista)
+
+    # def fuegoPlantaAgua
 
 pokemonEjercicio()
 
